@@ -2,6 +2,7 @@
 
 const store = require('../store')
 const mainNavTemplate = require('../templates/main-nav.handlebars')
+const signUpTemplate = require('../templates/sign-up-view.handlebars')
 
 const onSignUpSuccess = response => {
   $('.sign-up-form', '.sign-in-wrapper').trigger('reset')
@@ -21,11 +22,12 @@ const onSignUpFailure = () => {
 }
 
 const onSignInSuccess = response => {
+  $('.sign-in-wrapper', 'body').empty()
   const mainNavHtml = mainNavTemplate()
-  $('.sign-up-message', '.sign-in-wrapper').text(`You are signed in as ${response.user.email}`)
-  $('.sign-in-form', '.sign-in-wrapper').trigger('reset')
+  // $('.sign-up-message', '.sign-in-wrapper').text(`You are signed in as ${response.user.email}`)
+  // $('.sign-in-form', '.sign-in-wrapper').trigger('reset')
   store.user = response.user
-  $('.main-content').html(mainNavHtml)
+  $('.main-content', 'body').html(mainNavHtml)
 }
 
 const onSignInFailure = () => {
@@ -42,8 +44,11 @@ const onChangePwFailure = () => {
 }
 
 const onSignOutSuccess = () => {
-  $('.change-pw-form', '.modal-content').trigger('reset')
-  $('.sign-up-message', '.sign-in-wrapper').text(`Signed out.`)
+  // $('.change-pw-form', '.modal-content').trigger('reset')
+  // $('.sign-up-message', '.sign-in-wrapper').text(`Signed out.`)
+  $('.main-content', 'body').empty()
+  const signUpHtml = signUpTemplate()
+  $('.sign-in-wrapper', 'body').html(signUpHtml)
   store.user = null
 }
 

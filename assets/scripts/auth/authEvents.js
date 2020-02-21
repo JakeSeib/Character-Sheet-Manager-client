@@ -47,11 +47,6 @@ const onChangePw = event => {
     .catch(authUi.onChangePwFailure)
 }
 
-// const showForm = event => {
-//   event.preventDefault()
-//   console.log(event.target)
-// }
-
 const onSignOut = event => {
   event.preventDefault()
   authApi.signOut()
@@ -60,8 +55,8 @@ const onSignOut = event => {
 }
 
 const addHandlers = () => {
-  $('.sign-up-form', '.sign-in-wrapper').on('submit', onSignUp)
-  $('.sign-in-form', '.sign-in-wrapper').on('submit', onSignIn)
+  $('.sign-in-wrapper', 'body').on('submit', '.sign-up-form', onSignUp)
+  $('.sign-in-wrapper', 'body').on('submit', '.sign-in-form', onSignIn)
   $('.main-content').on('click', '.sign-out-btn', onSignOut)
   $('.main-content').on('click', '.change-pw-confirm', onChangePw)
 }
