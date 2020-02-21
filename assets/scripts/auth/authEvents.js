@@ -47,16 +47,17 @@ const onSignIn = event => {
 //     .catch(authUi.onChangePwFailure)
 // }
 //
-// const onSignOut = event => {
-//   event.preventDefault()
-//   authApi.signOut()
-//     .then(authUi.onSignOutSuccess)
-//     .catch(authUi.onSignOutFailure)
-// }
+const onSignOut = event => {
+  event.preventDefault()
+  authApi.signOut()
+    .then(authUi.onSignOutSuccess)
+    .catch(authUi.onSignOutFailure)
+}
 
 const addHandlers = () => {
   $('.sign-up-form', '.sign-in-wrapper').on('submit', onSignUp)
   $('.sign-in-form', '.sign-in-wrapper').on('submit', onSignIn)
+  $('.main-content').on('click', '.sign-out-btn', onSignOut)
 }
 
 module.exports = {

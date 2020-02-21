@@ -42,23 +42,21 @@ const onSignInFailure = () => {
 //   $('.change-pw-form', '.nav-wrapper').trigger('reset')
 // }
 
-// const onSignOutSuccess = () => {
-//   $('main').hide()
-//   $('.resume-incomplete-container', '.nav-wrapper').hide()
-//   $('.sign-in-wrapper', 'body').show()
-//   $('.change-pw-form', '.nav-wrapper').trigger('reset')
-//   $('.game-history', '.nav-wrapper').text('')
-//   store.incompleteGameIds = []
-//   store.user = null
-// }
-//
-// const onSignOutFailure = () => {
-//   $('auth-message', '.nav-wrapper').text(`Failed to sign out!`)
-// }
+const onSignOutSuccess = () => {
+  // $('.change-pw-form', '.nav-wrapper').trigger('reset')
+  $('.sign-up-message', '.sign-in-wrapper').text(`Signed out.`)
+  store.user = null
+}
+
+const onSignOutFailure = () => {
+  $('.sign-up-message', '.sign-in-wrapper').text(`Failed to sign out!`)
+}
 
 module.exports = {
   onSignUpSuccess,
   onSignUpFailure,
   onSignInSuccess,
-  onSignInFailure
+  onSignInFailure,
+  onSignOutSuccess,
+  onSignOutFailure
 }
