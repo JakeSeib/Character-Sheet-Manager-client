@@ -39,14 +39,19 @@ const onSignIn = event => {
   signInWithData(userData)
 }
 
-// const onChangePw = event => {
+const onChangePw = event => {
+  const changePwForm = $('.change-pw-form', '.modal-content')[0]
+  const userData = getFormFields(changePwForm)
+  authApi.changePw(userData)
+    .then(authUi.onChangePwSuccess)
+    .catch(authUi.onChangePwFailure)
+}
+
+// const showForm = event => {
 //   event.preventDefault()
-//   const userData = getFormFields(event.target)
-//   authApi.changePw(userData)
-//     .then(authUi.onChangePwSuccess)
-//     .catch(authUi.onChangePwFailure)
+//   console.log(event.target)
 // }
-//
+
 const onSignOut = event => {
   event.preventDefault()
   authApi.signOut()
@@ -58,6 +63,7 @@ const addHandlers = () => {
   $('.sign-up-form', '.sign-in-wrapper').on('submit', onSignUp)
   $('.sign-in-form', '.sign-in-wrapper').on('submit', onSignIn)
   $('.main-content').on('click', '.sign-out-btn', onSignOut)
+  $('.main-content').on('click', '.change-pw-confirm', onChangePw)
 }
 
 module.exports = {

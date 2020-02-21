@@ -23,7 +23,7 @@ const onSignUpFailure = () => {
 const onSignInSuccess = response => {
   const mainNavHtml = mainNavTemplate()
   $('.sign-up-message', '.sign-in-wrapper').text(`You are signed in as ${response.user.email}`)
-  $('.sign-in-form').trigger('reset')
+  $('.sign-in-form', '.sign-in-wrapper').trigger('reset')
   store.user = response.user
   $('.main-content').html(mainNavHtml)
 }
@@ -32,18 +32,17 @@ const onSignInFailure = () => {
   $('.sign-up-message', '.sign-in-wrapper').text(`Failed to sign in. Ensure that your email and password are correct.`)
 }
 
-// const onChangePwSuccess = () => {
-//   $('.auth-message', '.nav-wrapper').text(`Successfully changed password! Congrats, ${store.user.email}!`)
-//   $('.change-pw-form', '.nav-wrapper').trigger('reset')
-// }
+const onChangePwSuccess = () => {
+  $('.auth-message', '.modal-content').text(`Successfully changed password! Congrats, ${store.user.email}!`)
+  $('.change-pw-form', '.modal-content').trigger('reset')
+}
 
-// const onChangePwFailure = () => {
-//   $('.auth-message', '.nav-wrapper').text(`Failed to change password. Ensure that your current password is correct.`)
-//   $('.change-pw-form', '.nav-wrapper').trigger('reset')
-// }
+const onChangePwFailure = () => {
+  $('.auth-message', '.modal-content').text(`Failed to change password. Ensure that your current password is correct.`)
+}
 
 const onSignOutSuccess = () => {
-  // $('.change-pw-form', '.nav-wrapper').trigger('reset')
+  $('.change-pw-form', '.modal-content').trigger('reset')
   $('.sign-up-message', '.sign-in-wrapper').text(`Signed out.`)
   store.user = null
 }
@@ -57,6 +56,8 @@ module.exports = {
   onSignUpFailure,
   onSignInSuccess,
   onSignInFailure,
+  onChangePwSuccess,
+  onChangePwFailure,
   onSignOutSuccess,
   onSignOutFailure
 }

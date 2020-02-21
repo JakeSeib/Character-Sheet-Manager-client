@@ -8,9 +8,45 @@
   </div>
   <ul class="navbar-nav flex-row">
     <li>test-2-1</li>
-    <li>test-2-2</li>
     <li>
-      <button class="btn btn-secondary sign-out-btn">Sign Out</button>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-secondary change-pw-btn" data-toggle="modal" data-target=".change-pw-modal">
+        Change Password
+      </button>
+    </li>
+    <li>
+      <button type="button" class="btn btn-secondary sign-out-btn">Sign Out</button>
     </li>
   </ul>
 </header>
+
+<!-- Modal -->
+<div class="modal fade change-pw-modal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Change Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form class='change-pw-form'>
+        <fieldset>
+          <label>Current Password
+            <input class='change-pw pw-input' name='passwords[old]' type='password' placeholder='Password'>
+          </label>
+          <label>New Password
+            <input class='change-pw pw-input' name='passwords[new]' type='password' placeholder='New Password'>
+          </label>
+        </fieldset>
+      </form>
+
+      <p class='auth-message'></p>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary change-pw-confirm">Update Password</button>
+      </div>
+    </div>
+  </div>
+</div>
