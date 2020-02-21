@@ -1,1 +1,25 @@
 @import '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import 'variables';
+
+body {
+  font-family: $default-font-family;
+}
+
+.sign-in-wrapper {
+  // border: 1px solid $default-border-color;
+  // margin-top: 10%;
+  // padding: 10px;
+}
+
+.signed-in-message {
+  padding: 10px;
+}
+
+// bootstrap breakpoint styling
+@media screen and (min-width: 768px) {
+}
+
+// bootstrap breakpoint styling
+@media screen and (min-width: 768px) and (max-width: 1000px) {
+}

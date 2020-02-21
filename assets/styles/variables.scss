@@ -1,0 +1,7 @@
+$default-border-color: #000;
+$default-font-color: #000;
+$default-font-family: 'Roboto', $font-family-sans-serif;
+
+:export {
+  defaultfontcolor: $default-font-color;
+}
