@@ -1,6 +1,8 @@
 'use strict'
 
 const store = require('../store')
+const mainNavTemplate = require('../templates/main-nav.handlebars')
+const signUpTemplate = require('../templates/sign-up-view.handlebars')
 
 const onSignUpSuccess = response => {
   $('.sign-up-form', '.sign-in-wrapper').trigger('reset')
@@ -9,7 +11,7 @@ const onSignUpSuccess = response => {
 
 const onSignUpFailure = () => {
   $('.sign-up-message', '.sign-in-wrapper').text(`Failed to sign up. Ensure that password and \
-    password confirmation are the same, or try a different email address.`)
+    password confirmation are the same, or try a different email address`)
 
   // clear the message
   // setTimeout(() => {
@@ -20,42 +22,44 @@ const onSignUpFailure = () => {
 }
 
 const onSignInSuccess = response => {
-  $('.sign-up-message', '.sign-in-wrapper').text(`You are signed in as ${response.user.email}`)
-  $('.sign-in-form').trigger('reset')
   store.user = response.user
+  $('.sign-in-wrapper', 'body').empty()
+  const mainNavHtml = mainNavTemplate()
+  $('.main-content', 'body').html(mainNavHtml)
+  $('.nav-message', '.nav-right-ul').text(`Signed in as ${store.user.email}`)
 }
 
 const onSignInFailure = () => {
-  $('.sign-up-message', '.sign-in-wrapper').text(`Failed to sign in. Ensure that your email and password are correct.`)
+  $('.sign-in-message', '.sign-in-wrapper').text(`Failed to sign in. Ensure that your email and password are correct`)
 }
 
-// const onChangePwSuccess = () => {
-//   $('.auth-message', '.nav-wrapper').text(`Successfully changed password! Congrats, ${store.user.email}!`)
-//   $('.change-pw-form', '.nav-wrapper').trigger('reset')
-// }
+const onChangePwSuccess = () => {
+  $('.auth-message', '.modal-content').text(`Successfully changed password for ${store.user.email}`)
+  $('.change-pw-form', '.modal-content').trigger('reset')
+}
 
-// const onChangePwFailure = () => {
-//   $('.auth-message', '.nav-wrapper').text(`Failed to change password. Ensure that your current password is correct.`)
-//   $('.change-pw-form', '.nav-wrapper').trigger('reset')
-// }
+const onChangePwFailure = () => {
+  $('.auth-message', '.modal-content').text(`Failed to change password. Ensure that your current password is correct`)
+}
 
-// const onSignOutSuccess = () => {
-//   $('main').hide()
-//   $('.resume-incomplete-container', '.nav-wrapper').hide()
-//   $('.sign-in-wrapper', 'body').show()
-//   $('.change-pw-form', '.nav-wrapper').trigger('reset')
-//   $('.game-history', '.nav-wrapper').text('')
-//   store.incompleteGameIds = []
-//   store.user = null
-// }
-//
-// const onSignOutFailure = () => {
-//   $('auth-message', '.nav-wrapper').text(`Failed to sign out!`)
-// }
+const onSignOutSuccess = () => {
+  store.user = null
+  $('.main-content', 'body').empty()
+  const signUpHtml = signUpTemplate()
+  $('.sign-in-wrapper', 'body').html(signUpHtml)
+}
+
+const onSignOutFailure = () => {
+  $('.nav-message', '.nav-right-ul').text(`Failed to sign out`)
+}
 
 module.exports = {
   onSignUpSuccess,
   onSignUpFailure,
   onSignInSuccess,
-  onSignInFailure
+  onSignInFailure,
+  onChangePwSuccess,
+  onChangePwFailure,
+  onSignOutSuccess,
+  onSignOutFailure
 }

@@ -12,41 +12,47 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body class='bg-light'>
-      <div class='sign-in-wrapper container border border-dark rounded bg-white'>
-        <p class='message sign-up-message'></p>
-        <form class='sign-up-form'>
-          <fieldset>
-            <legend>Sign Up</legend>
-            <p>* required field</p>
-            <label>Email*
-              <input class='signup email-input' name='credentials[email]' type='email' placeholder='example@example.com'>
-            </label>
-            <label>Name
-              <input class='signup name-input' name='credentials[name]' type='text' placeholder='Your Name Here'>
-            </label>
-            <label>Password*
-              <input class='signup pw-input' name='credentials[password]' type='password' placeholder='Password'>
-            </label>
-            <label>Confirm Password*
-              <input class='signup pw-input' name='credentials[password_confirmation]' type='password' placeholder='Confirm Password'>
-            </label>
-            <input type='submit' value='Sign Up'>
-          </fieldset>
-        </form>
 
-        <form class='sign-in-form'>
-          <fieldset>
-            <legend>Log In</legend>
-            <label>Email
-              <input class='signin email-input' name='credentials[email]' type='email' placeholder='example@example.com'>
-            </label>
-            <label>Password
-              <input class='signin pw-input' name='credentials[password]' type='password' placeholder='Password'>
-            </label>
-            <input type='submit' value='Log In'>
-          </fieldset>
-        </form>
+      <div class='sign-in-wrapper'>
+        <div class='container border border-dark rounded bg-white'>
+          <p class='message sign-up-message'></p>
+          <form class='sign-up-form'>
+            <fieldset>
+              <legend>Sign Up</legend>
+              <p>* required field</p>
+              <label>Email*
+                <input class='signup email-input' name='credentials[email]' type='email' placeholder='example@example.com'>
+              </label>
+              <label>Name
+                <input class='signup name-input' name='credentials[name]' type='text' placeholder='Your Name Here'>
+              </label>
+              <label>Password*
+                <input class='signup pw-input' name='credentials[password]' type='password' placeholder='Password'>
+              </label>
+              <label>Confirm Password*
+                <input class='signup pw-input' name='credentials[password_confirmation]' type='password' placeholder='Confirm Password'>
+              </label>
+              <input type='submit' value='Sign Up'>
+            </fieldset>
+          </form>
+
+          <p class='message sign-in-message'></p>
+          <form class='sign-in-form'>
+            <fieldset>
+              <legend>Log In</legend>
+              <label>Email
+                <input class='signin email-input' name='credentials[email]' type='email' placeholder='example@example.com'>
+              </label>
+              <label>Password
+                <input class='signin pw-input' name='credentials[password]' type='password' placeholder='Password'>
+              </label>
+              <input type='submit' value='Log In'>
+            </fieldset>
+          </form>
+        </div>
       </div>
+
+      <div class='main-content'></div>
 
     </body>
 </html>
