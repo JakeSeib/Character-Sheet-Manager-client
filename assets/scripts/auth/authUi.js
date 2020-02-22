@@ -11,7 +11,7 @@ const onSignUpSuccess = response => {
 
 const onSignUpFailure = () => {
   $('.sign-up-message', '.sign-in-wrapper').text(`Failed to sign up. Ensure that password and \
-    password confirmation are the same, or try a different email address.`)
+    password confirmation are the same, or try a different email address`)
 
   // clear the message
   // setTimeout(() => {
@@ -22,38 +22,35 @@ const onSignUpFailure = () => {
 }
 
 const onSignInSuccess = response => {
+  store.user = response.user
   $('.sign-in-wrapper', 'body').empty()
   const mainNavHtml = mainNavTemplate()
-  // $('.sign-up-message', '.sign-in-wrapper').text(`You are signed in as ${response.user.email}`)
-  // $('.sign-in-form', '.sign-in-wrapper').trigger('reset')
-  store.user = response.user
   $('.main-content', 'body').html(mainNavHtml)
+  $('.nav-message', '.nav-right-ul').text(`Signed in as ${store.user.email}`)
 }
 
 const onSignInFailure = () => {
-  $('.sign-up-message', '.sign-in-wrapper').text(`Failed to sign in. Ensure that your email and password are correct.`)
+  $('.sign-in-message', '.sign-in-wrapper').text(`Failed to sign in. Ensure that your email and password are correct`)
 }
 
 const onChangePwSuccess = () => {
-  $('.auth-message', '.modal-content').text(`Successfully changed password! Congrats, ${store.user.email}!`)
+  $('.auth-message', '.modal-content').text(`Successfully changed password for ${store.user.email}`)
   $('.change-pw-form', '.modal-content').trigger('reset')
 }
 
 const onChangePwFailure = () => {
-  $('.auth-message', '.modal-content').text(`Failed to change password. Ensure that your current password is correct.`)
+  $('.auth-message', '.modal-content').text(`Failed to change password. Ensure that your current password is correct`)
 }
 
 const onSignOutSuccess = () => {
-  // $('.change-pw-form', '.modal-content').trigger('reset')
-  // $('.sign-up-message', '.sign-in-wrapper').text(`Signed out.`)
+  store.user = null
   $('.main-content', 'body').empty()
   const signUpHtml = signUpTemplate()
   $('.sign-in-wrapper', 'body').html(signUpHtml)
-  store.user = null
 }
 
 const onSignOutFailure = () => {
-  $('.sign-up-message', '.sign-in-wrapper').text(`Failed to sign out!`)
+  $('.nav-message', '.nav-right-ul').text(`Failed to sign out`)
 }
 
 module.exports = {
