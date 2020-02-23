@@ -1,23 +1,30 @@
-<header class="navbar bg-info text-white">
+<header class="navbar text-white navbar-dark bg-dark">
   <div>
     <ul class="navbar-nav flex-row">
-      <li class="nav-left">test-1-1</li>
-      <li class="nav-left">test-1-2</li>
-      <li class="nav-left">test-1-3</li>
+      <li class="nav-left"></li>
+      <li class="nav-left">
+        <button type="button" class="btn btn-secondary char-index-btn">All Characters</button>
+      </li>
+      <li class="nav-left">
+        <button type="button" class="btn btn-secondary char-create-btn">Create New Character</button>
+      </li>
     </ul>
   </div>
-  <ul class="navbar-nav flex-row nav-right-ul">
-    <li class="nav-right nav-message"></li>
-    <li class="nav-right">
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-secondary change-pw-btn" data-toggle="modal" data-target=".change-pw-modal">
-        Change Password
-      </button>
-    </li>
-    <li class="nav-right">
-      <button type="button" class="btn btn-secondary sign-out-btn">Sign Out</button>
-    </li>
-  </ul>
+  <div class="app-title navbar-brand">Character Sheet Manager</div>
+  <div>
+    <ul class="navbar-nav flex-row nav-right-ul">
+      <li class="nav-right nav-message"></li>
+      <li class="nav-right">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-secondary change-pw-btn" data-toggle="modal" data-target=".change-pw-modal">
+          Change Password
+        </button>
+      </li>
+      <li class="nav-right">
+        <button type="button" class="btn btn-secondary sign-out-btn">Sign Out</button>
+      </li>
+    </ul>
+  </div>
 </header>
 
 <!-- Modal -->
