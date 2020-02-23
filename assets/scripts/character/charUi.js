@@ -1,7 +1,7 @@
 'use strict'
 
 const allCharsTemplate = require('../templates/all-chars.handlebars')
-const store = require('../store')
+// const store = require('../store')
 
 const onCharIndexSuccess = data => {
   console.log('data', data)
