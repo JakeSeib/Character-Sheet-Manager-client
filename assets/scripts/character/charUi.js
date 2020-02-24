@@ -11,6 +11,7 @@ const onCharIndexSuccess = response => {
     const allCharsHtml = allCharsTemplate({ characters: Object.values(response) })
     $('.char-sheets', '.char-content-wrapper').html(allCharsHtml)
   } else {
+    $('.char-sheets', '.char-content-wrapper').empty()
     $('.char-message', '.char-content-wrapper').text(`You don't have any characters`)
   }
 }
