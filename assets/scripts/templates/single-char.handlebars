@@ -13,11 +13,13 @@
       </fieldset>
     </form>
 
-    <div class="btn-container">
+    <div class="char-sheet-btns btn-container">
       <!-- should only show if character already has an id -->
-      {{> buttons/delete-char id=char.id}}
-      {{> buttons/cancel-edit-char}}
-      {{> buttons/edit-char id=char.id}}
+      {{#if char.id}}
+      {{> buttons/edit-char-btns id=char.id}}
+      {{else}}
+      {{> buttons/new-char-btns id=char.id}}
+      {{/if}}
     </div>
   </section>
 </div>

@@ -2,6 +2,7 @@
 
 const allCharsTemplate = require('../templates/all-chars.handlebars')
 const singleCharTemplate = require('../templates/single-char.handlebars')
+const charSheetBtnsTemplate = require('../templates/buttons/edit-char-btns.handlebars')
 const store = require('../store')
 
 const onCharIndexSuccess = response => {
@@ -28,8 +29,13 @@ const onCharSelect = id => {
   $('.char-sheets', '.char-content-wrapper').html(charSelectHtml)
 }
 
-const onSaveCharSuccess = () => {
+const onSaveCharSuccess = response => {
   $('.edit-char-message', '.char-sheet').text('Successfully saved character')
+  // todo: rather than always recreating buttons, check if the character didn't
+  // already exist, and only switch out old buttons for ones with newly created
+  // id attached for newly created characters
+  const btnHtml = charSheetBtnsTemplate({ id: response.character.id })
+  $('.char-sheet-btns').html(btnHtml)
 }
 
 const onSaveCharFailure = () => {
