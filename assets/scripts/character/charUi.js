@@ -36,10 +36,20 @@ const onSaveCharFailure = () => {
   $('.edit-char-message', '.char-sheet').text('Failed to save character')
 }
 
+const onDeleteCharSuccess = () => {
+  $('.char-delete-message', '.char-content-wrapper').text('Successfully deleted character')
+}
+
+const onDeleteCharFailure = () => {
+  $('.edit-char-message', '.char-sheet').text('Failed to delete character')
+}
+
 module.exports = {
   onCharIndexSuccess,
   onCharIndexFailure,
   onCharSelect,
   onSaveCharSuccess,
-  onSaveCharFailure
+  onSaveCharFailure,
+  onDeleteCharSuccess,
+  onDeleteCharFailure
 }

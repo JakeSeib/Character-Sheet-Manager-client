@@ -34,13 +34,18 @@ const onSaveChar = event => {
 }
 
 const onDeleteChar = event => {
-  const id = event.target.getAttribute('data-id')
-  console.log(id)
+  const charId = event.target.getAttribute('data-id')
+  charApi.charDelete(charId)
+    .then(charId => {
+      onGetChars()
+      charUi.onDeleteCharSuccess()
+    })
+    .catch(charUi.onDeleteCharFailure)
 }
 
 const onSelectChar = event => {
-  const id = event.target.getAttribute('data-id')
-  charUi.onCharSelect(id)
+  const charId = event.target.getAttribute('data-id')
+  charUi.onCharSelect(charId)
 }
 
 const addHandlers = () => {

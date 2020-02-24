@@ -35,8 +35,19 @@ const charUpdate = (charData, charId) => {
   })
 }
 
+const charDelete = charId => {
+  return $.ajax({
+    url: `${config.apiUrl}/characters/${charId}`,
+    method: 'DELETE',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    }
+  })
+}
+
 module.exports = {
   charIndex,
   charCreate,
-  charUpdate
+  charUpdate,
+  charDelete
 }
