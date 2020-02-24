@@ -13,35 +13,30 @@ const charIndex = () => {
   })
 }
 
-// const charCreate = userData => {
-//   return $.ajax({
-//     url: `${config.apiUrl}/sign-in`,
-//     method: 'POST',
-//     data: userData
-//   })
-// }
-//
-// const changePw = userData => {
-//   return $.ajax({
-//     url: `${config.apiUrl}/change-password`,
-//     method: 'PATCH',
-//     headers: {
-//       Authorization: `Token token=${store.user.token}`
-//     },
-//     data: userData
-//   })
-// }
-//
-// const signOut = () => {
-//   return $.ajax({
-//     url: `${config.apiUrl}/sign-out`,
-//     method: 'DELETE',
-//     headers: {
-//       Authorization: `Token token=${store.user.token}`
-//     }
-//   })
-// }
+const charCreate = charData => {
+  return $.ajax({
+    url: `${config.apiUrl}/characters`,
+    method: 'POST',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    },
+    data: charData
+  })
+}
+
+const charUpdate = (charData, charId) => {
+  return $.ajax({
+    url: `${config.apiUrl}/characters/${charId}`,
+    method: 'PATCH',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    },
+    data: charData
+  })
+}
 
 module.exports = {
-  charIndex
+  charIndex,
+  charCreate,
+  charUpdate
 }

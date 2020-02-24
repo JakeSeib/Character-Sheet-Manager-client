@@ -1,7 +1,7 @@
 'use strict'
 
 const allCharsTemplate = require('../templates/all-chars.handlebars')
-const focusCharTemplate = require('../templates/focus-char.handlebars')
+const singleCharTemplate = require('../templates/single-char.handlebars')
 const store = require('../store')
 
 const onCharIndexSuccess = response => {
@@ -19,12 +19,27 @@ const onCharIndexFailure = () => {
 }
 
 const onCharSelect = id => {
-  const charSelectHtml = focusCharTemplate({ char: store.user.characters[id] })
+  let charSelectHtml
+  if (id) {
+    charSelectHtml = singleCharTemplate({ char: store.user.characters[id] })
+  } else {
+    charSelectHtml = singleCharTemplate({ char: {} })
+  }
   $('.char-sheets', '.char-content-wrapper').html(charSelectHtml)
+}
+
+const onSaveCharSuccess = () => {
+  $('.edit-char-message', '.char-sheet').text('Successfully saved character')
+}
+
+const onSaveCharFailure = () => {
+  $('.edit-char-message', '.char-sheet').text('Failed to save character')
 }
 
 module.exports = {
   onCharIndexSuccess,
   onCharIndexFailure,
-  onCharSelect
+  onCharSelect,
+  onSaveCharSuccess,
+  onSaveCharFailure
 }

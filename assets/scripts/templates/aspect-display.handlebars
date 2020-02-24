@@ -1,6 +1,3 @@
-<h6>{{display}}</h6>
-<p>
-  {{#if char.attr}}
-    {{char.attr}}
-  {{/if}}
-</p>
+<label>{{display}}
+  <input class='aspect-input' name='character[{{attr}}]' type='text' value='{{lookup char [attr]}}'>
+</label>
