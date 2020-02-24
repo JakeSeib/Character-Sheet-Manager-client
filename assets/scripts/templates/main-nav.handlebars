@@ -41,18 +41,21 @@
       <form class='change-pw-form'>
         <fieldset>
           <label>Current Password
+            <br />
             <input class='change-pw pw-input' name='passwords[old]' type='password' placeholder='Password'>
           </label>
+          <br />
           <label>New Password
+            <br />
             <input class='change-pw pw-input' name='passwords[new]' type='password' placeholder='New Password'>
           </label>
         </fieldset>
       </form>
 
-      <p class='auth-message'></p>
+      <p class='message auth-message'></p>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary change-pw-confirm">Update Password</button>
+        <button type="button" class="btn btn-success change-pw-confirm">Update Password</button>
       </div>
     </div>
   </div>

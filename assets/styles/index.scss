@@ -6,22 +6,60 @@ body {
   font-family: $default-font-family;
 }
 
-.sign-in-wrapper {
-  // border: 1px solid $default-border-color;
-  // margin-top: 10%;
-  // padding: 10px;
+label {
+  text-align: left;
+  width: 80%;
+}
+
+.sign-in-wrapper,
+.change-pw-form {
+  text-align: center;
+}
+
+.nav-right-ul {
+  align-items: center;
+}
+
+.nav-right,
+.nav-left {
+  padding: 0 5px;
+}
+
+.char-delete-btn,
+.char-cancel-btn,
+.char-save-btn,
+.char-select-btn {
+  margin-bottom: 5px;
+}
+
+.signup,
+.signin,
+.pw-input {
+  width: 100%;
+}
+
+.sign-in-form {
+  margin-bottom: 10px;
 }
 
 .signed-in-message {
   padding: 10px;
 }
 
+.change-pw-form {
+  margin-top: 10px;
+}
+
+.message {
+  text-align: center;
+}
+
 // .char-card {}
 
 // bootstrap breakpoint styling: sm-md
-@media screen and (min-width: 768px) {
-}
+// @media screen and (min-width: 768px) {
+// }
 
 // bootstrap breakpoint styling: md-lg
-@media screen and (min-width: 768px) and (max-width: 1000px) {
-}
+// @media screen and (min-width: 768px) and (max-width: 1000px) {
+// }
