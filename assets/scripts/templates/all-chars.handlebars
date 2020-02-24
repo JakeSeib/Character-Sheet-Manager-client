@@ -13,8 +13,8 @@
         {{/if}}
       </p>
       <div class="btn-container">
-        {{> select-char id=char.id}}
-        {{> delete-char id=char.id}}
+        {{> buttons/delete-char id=char.id}}
+        {{> buttons/select-char char=char}}
       </div>
     </section>
 

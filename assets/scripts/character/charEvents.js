@@ -28,7 +28,7 @@ const onDeleteChar = event => {
 
 const onSelectChar = event => {
   const id = event.target.getAttribute('data-id')
-  console.log(id)
+  charUi.onCharSelect(id)
 }
 
 const addHandlers = () => {

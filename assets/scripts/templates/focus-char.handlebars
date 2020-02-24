@@ -1,0 +1,21 @@
+<div class="row">
+  <section class = "char-sheet col-md-12 border border-dark rounded bg-white" data-id="{{char.id}}">
+    <h6>Name:</h6>
+    <h3>
+      {{#if char.name}}
+        {{char.name}}
+      {{/if}}
+    </h3>
+    {{> aspect-display char=char display='High Concept' attr='high_concept' }}
+    {{> aspect-display char=char display='Trouble' attr='trouble' }}
+    {{> aspect-display char=char display='Aspect' attr='aspect_1' }}
+    {{> aspect-display char=char display='Aspect' attr='aspect_2' }}
+    {{> aspect-display char=char display='Aspect' attr='aspect_3' }}
+
+    <div class="btn-container">
+      {{> buttons/delete-char id=char.id}}
+      {{> buttons/cancel-edit-char}}
+      {{> buttons/edit-char id=char.id}}
+    </div>
+  </section>
+</div>
