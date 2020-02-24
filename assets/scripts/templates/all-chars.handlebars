@@ -1,0 +1,22 @@
+<div class="row">
+  {{#each characters as |char|}}
+    {{!-- {{log book}} --}}
+    <section class = "char-card col-md-4 border border-dark rounded bg-white" data-id="{{char.id}}">
+      <h6>Name:</h6>
+      <h3>
+        {{limit char.name 15}}
+      </h3>
+      <h6>High Concept:</h6>
+      <p>
+        {{#if char.high_concept}}
+          {{char.high_concept}}
+        {{/if}}
+      </p>
+      <div class="btn-container">
+        {{> buttons/delete-char id=char.id}}
+        {{> buttons/select-char char=char}}
+      </div>
+    </section>
+
+  {{/each}}
+</div>

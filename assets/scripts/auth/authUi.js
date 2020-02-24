@@ -1,7 +1,7 @@
 'use strict'
 
 const store = require('../store')
-const mainNavTemplate = require('../templates/main-nav.handlebars')
+const mainContentTemplate = require('../templates/main-content.handlebars')
 const signUpTemplate = require('../templates/sign-up-view.handlebars')
 
 const onSignUpSuccess = response => {
@@ -24,8 +24,8 @@ const onSignUpFailure = () => {
 const onSignInSuccess = response => {
   store.user = response.user
   $('.sign-in-wrapper', 'body').empty()
-  const mainNavHtml = mainNavTemplate()
-  $('.main-content', 'body').html(mainNavHtml)
+  const mainContentHtml = mainContentTemplate()
+  $('.main-content', 'body').html(mainContentHtml)
   $('.nav-message', '.nav-right-ul').text(`Signed in as ${store.user.email}`)
 }
 
