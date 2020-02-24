@@ -1,12 +1,16 @@
 'use strict'
 
 // const getFormFields = require('../../../lib/get-form-fields')
+const store = require('../store')
 const charApi = require('./charApi')
 const charUi = require('./charUi')
 
 const onGetChars = event => {
   charApi.charIndex()
-    .then(charUi.onCharIndexSuccess)
+    .then(response => {
+      store.user.characters = response
+      charUi.onCharIndexSuccess(response)
+    })
     .catch(charUi.onCharIndexFailure)
 }
 
