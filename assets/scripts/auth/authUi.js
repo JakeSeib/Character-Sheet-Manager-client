@@ -6,7 +6,7 @@ const signUpTemplate = require('../templates/sign-up-view.handlebars')
 
 const onSignUpSuccess = response => {
   $('.sign-up-form', '.sign-in-wrapper').trigger('reset')
-  $('.sign-up-message', '.sign-in-wrapper').text('signup success')
+  $('.sign-up-message', '.sign-in-wrapper').text('Successfully signed up')
 }
 
 const onSignUpFailure = () => {
@@ -47,6 +47,7 @@ const onSignOutSuccess = () => {
   $('.main-content', 'body').empty()
   const signUpHtml = signUpTemplate()
   $('.sign-in-wrapper', 'body').html(signUpHtml)
+  $('.sign-up-message', '.sign-in-wrapper').text('Successfully signed out')
 }
 
 const onSignOutFailure = () => {
