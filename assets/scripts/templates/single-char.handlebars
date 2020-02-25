@@ -1,16 +1,28 @@
 <div class="row">
-  <section class = "char-sheet col-md-12 border border-dark rounded bg-white" data-id="{{char.id}}">
+  <section class ="char-sheet col-md-12 border border-dark rounded bg-white" data-id="{{char.id}}">
 
     <p class='message edit-char-message'></p>
     <form class='char-edit-form'>
-      <fieldset>
-        {{> aspect-display char=char display='Name' attr='name' }}
-        {{> aspect-display char=char display='High Concept' attr='high_concept' }}
-        {{> aspect-display char=char display='Trouble' attr='trouble' }}
-        {{> aspect-display char=char display='Aspect' attr='aspect_1' }}
-        {{> aspect-display char=char display='Aspect' attr='aspect_2' }}
-        {{> aspect-display char=char display='Aspect' attr='aspect_3' }}
-      </fieldset>
+      <div class='container-fluid'>
+        <div class='row'>
+          <div class='col-md-6 char-aspects'>
+            <fieldset>
+              {{> aspect-display char=char display='Name' attr='name' }}
+              {{> aspect-display char=char display='High Concept' attr='high_concept' }}
+              {{> aspect-display char=char display='Trouble' attr='trouble' }}
+              {{> aspect-display char=char display='Aspect' attr='aspect_1' }}
+              {{> aspect-display char=char display='Aspect' attr='aspect_2' }}
+              {{> aspect-display char=char display='Aspect' attr='aspect_3' }}
+            </fieldset>
+          </div>
+          <div class='col-md-6 char-skills'>
+            {{#each char.character_skills}}
+            <p>{{this.skill_name}}: {{this.level}}</p>
+            <br />
+            {{/each}}
+          </div>
+        </div>
+      </div>
     </form>
 
     <div class="char-sheet-btns btn-container">
