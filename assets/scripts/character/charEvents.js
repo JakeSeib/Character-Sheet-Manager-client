@@ -38,7 +38,7 @@ const onDeleteChar = event => {
   charApi.charDelete(charId)
     .then(charId => {
       onGetChars()
-      charUi.onDeleteCharSuccess()
+      charUi.onDeleteCharSuccess(charId)
     })
     .catch(charUi.onDeleteCharFailure)
 }

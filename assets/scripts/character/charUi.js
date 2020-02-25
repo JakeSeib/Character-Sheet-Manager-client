@@ -43,8 +43,9 @@ const onSaveCharFailure = () => {
   $('.edit-char-message', '.char-sheet').text('Failed to save character')
 }
 
-const onDeleteCharSuccess = () => {
+const onDeleteCharSuccess = charId => {
   $('.char-delete-message', '.char-content-wrapper').text('Successfully deleted character')
+  $('.modal-backdrop').remove()
 }
 
 const onDeleteCharFailure = () => {

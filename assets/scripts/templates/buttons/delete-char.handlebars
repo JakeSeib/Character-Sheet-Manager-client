@@ -1,1 +1,23 @@
-<button class="char-delete-btn btn btn-danger" data-id="{{id}}">Delete</button>
+<button type="button" class="char-delete-prompt btn btn-danger" data-toggle="modal" data-target=".char-delete-modal-{{id}}">Delete</button>
+
+<!-- Modal -->
+<div class="modal fade char-delete-modal-{{id}}" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Character</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <p class='message char-delete-conf-message'>
+        Are you sure you want to delete this character?
+      </p>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger char-delete-btn" data-dismiss="modal" data-id="{{id}}">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
