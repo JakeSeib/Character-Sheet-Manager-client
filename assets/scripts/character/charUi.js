@@ -52,6 +52,17 @@ const onDeleteCharFailure = () => {
   $('.edit-char-message', '.char-sheet').text('Failed to delete character')
 }
 
+const onDeleteCharPrompt = event => {
+  // const modal = $(this) won't find the modal, so do a new jQuery search
+  // const deleteButton = modal.find('.char-delete-btn')
+  const deleteButton = $('.char-delete-btn', '.char-delete-modal')
+  const button = $(event.relatedTarget) // Button that triggered the modal
+  const recipient = button.data('id') // Extract info from data-id attribute
+  // Update the modal's content
+  // setting via the .data() method also doesn't work, so use attr()
+  deleteButton.attr('data-id', recipient)
+}
+
 module.exports = {
   onCharIndexSuccess,
   onCharIndexFailure,
@@ -59,5 +70,6 @@ module.exports = {
   onSaveCharSuccess,
   onSaveCharFailure,
   onDeleteCharSuccess,
-  onDeleteCharFailure
+  onDeleteCharFailure,
+  onDeleteCharPrompt
 }

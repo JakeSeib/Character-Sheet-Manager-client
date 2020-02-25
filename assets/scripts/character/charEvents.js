@@ -52,9 +52,10 @@ const addHandlers = () => {
   $('.main-content', 'body').on('click', '.char-index-btn', onGetChars)
   $('.main-content', 'body').on('click', '.char-create-btn', onCreateCharForm)
   $('.main-content', 'body').on('click', '.char-save-btn', onSaveChar)
-  $('.main-content', 'body').on('click', '.char-delete-btn', onDeleteChar)
   $('.main-content', 'body').on('click', '.char-select-btn', onSelectChar)
   $('.main-content', 'body').on('click', '.char-cancel-btn', onGetChars)
+  $('.char-delete-modal', 'body').on('show.bs.modal', charUi.onDeleteCharPrompt)
+  $('.char-delete-btn', '.char-delete-modal').on('click', onDeleteChar)
 }
 
 module.exports = {
