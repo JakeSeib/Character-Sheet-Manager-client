@@ -43,12 +43,25 @@ const onSaveCharFailure = () => {
   $('.edit-char-message', '.char-sheet').text('Failed to save character')
 }
 
-const onDeleteCharSuccess = () => {
+const onDeleteCharSuccess = charId => {
   $('.char-delete-message', '.char-content-wrapper').text('Successfully deleted character')
+  $('.modal-backdrop').remove()
 }
 
 const onDeleteCharFailure = () => {
   $('.edit-char-message', '.char-sheet').text('Failed to delete character')
+}
+
+const onDeleteCharPrompt = event => {
+  // unsure why
+  // $(this).find('.char-delete-btn').data('id', recipient)
+  // doesn't work, so instead do a new jQuery search and use attr() instead of
+  // data()
+  const deleteButton = $('.char-delete-btn', '.char-delete-modal')
+  const button = $(event.relatedTarget) // Button that triggered the modal
+  const recipient = button.data('id') // Extract info from data-id attribute
+  // Update the modal's content
+  deleteButton.attr('data-id', recipient)
 }
 
 module.exports = {
@@ -58,5 +71,6 @@ module.exports = {
   onSaveCharSuccess,
   onSaveCharFailure,
   onDeleteCharSuccess,
-  onDeleteCharFailure
+  onDeleteCharFailure,
+  onDeleteCharPrompt
 }
