@@ -15,7 +15,7 @@ const onGetChars = event => {
 }
 
 const onCreateCharForm = event => {
-  charUi.onSelectCharSuccess()
+  charUi.onCharSelect()
 }
 
 const onSaveChar = event => {
@@ -43,12 +43,20 @@ const onDeleteChar = event => {
     .catch(charUi.onDeleteCharFailure)
 }
 
+// to be used if selecting a single character from index
 const onSelectChar = event => {
   const charId = event.target.getAttribute('data-id')
-  charApi.charSelect(charId)
-    .then(charUi.onSelectCharSuccess)
-    .catch(charUi.onSelectCharFailure)
+  const char = store.user.characters[charId]
+  charUi.onCharSelect(char)
 }
+
+// to be used if selecting a single character via the API
+// const onGetChar = event => {
+//   const charId = event.target.getAttribute('data-id')
+//   charApi.charSelect(charId)
+//     .then(charUi.onSelectCharSuccess)
+//     .catch(charUi.onSelectCharFailure)
+// }
 
 const addHandlers = () => {
   $('.main-content', 'body').on('click', '.char-index-btn', onGetChars)

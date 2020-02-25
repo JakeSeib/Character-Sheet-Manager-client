@@ -1,5 +1,6 @@
 'use strict'
 
+const store = require('../store')
 const allCharsTemplate = require('../templates/all-chars.handlebars')
 const singleCharTemplate = require('../templates/single-char.handlebars')
 const charSheetBtnsTemplate = require('../templates/buttons/edit-char-btns.handlebars')
@@ -19,16 +20,23 @@ const onCharIndexFailure = () => {
   $('.char-message', '.char-content-wrapper').text(`Failed to get characters`)
 }
 
-const onSelectCharSuccess = response => {
-  // Has an optional response param if selecting existing character, otherwise
-  // creates an empty form
+// to be used if selecting a single character from index
+const onCharSelect = char => {
+  // Has an optional char if selecting existing character, otherwise creates an
+  // empty form
   let charSelectHtml
-  if (response) {
-    charSelectHtml = singleCharTemplate({ char: response.character })
+  if (char) {
+    console.log('character', char)
+    charSelectHtml = singleCharTemplate({ char: char, skills: store.skills })
   } else {
-    charSelectHtml = singleCharTemplate({ char: {} })
+    charSelectHtml = singleCharTemplate({ char: {}, skills: store.skills })
   }
   $('.char-sheets', '.char-content-wrapper').html(charSelectHtml)
+}
+
+// to be used if selecting a single character via the API
+const onSelectCharSuccess = response => {
+  onCharSelect(response.character)
 }
 
 const onSelectCharFailure = response => {
@@ -72,6 +80,7 @@ const onDeleteCharPrompt = event => {
 module.exports = {
   onCharIndexSuccess,
   onCharIndexFailure,
+  onCharSelect,
   onSelectCharSuccess,
   onSelectCharFailure,
   onSaveCharSuccess,

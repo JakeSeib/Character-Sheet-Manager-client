@@ -7,6 +7,7 @@ const skillUi = require('./skillApi')
 const onGetSkills = () => {
   skillApi.skillIndex()
     .then(response => {
+      console.log('skills', response)
       store.skills = response.skills
     })
     .catch(skillUi.onGetSkillsFailure)
