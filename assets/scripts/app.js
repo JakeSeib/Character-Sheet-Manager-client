@@ -2,6 +2,7 @@
 
 const authEvents = require('./auth/authEvents')
 const charEvents = require('./character/charEvents')
+const skillEvents = require('./skill/skillEvents')
 // const store = require('./store')
 
 // use require with a reference to bundle the file and use it in this file
@@ -13,4 +14,5 @@ const charEvents = require('./character/charEvents')
 $(() => {
   authEvents.addHandlers()
   charEvents.addHandlers()
+  skillEvents.onGetSkills()
 })
