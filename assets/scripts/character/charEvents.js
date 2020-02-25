@@ -15,7 +15,7 @@ const onGetChars = event => {
 }
 
 const onCreateCharForm = event => {
-  charUi.onCharSelect()
+  charUi.onSelectCharSuccess()
 }
 
 const onSaveChar = event => {
@@ -45,7 +45,9 @@ const onDeleteChar = event => {
 
 const onSelectChar = event => {
   const charId = event.target.getAttribute('data-id')
-  charUi.onCharSelect(charId)
+  charApi.charSelect(charId)
+    .then(charUi.onSelectCharSuccess)
+    .catch(charUi.onSelectCharFailure)
 }
 
 const addHandlers = () => {
