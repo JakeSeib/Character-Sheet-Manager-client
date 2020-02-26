@@ -17,32 +17,31 @@
             </fieldset>
           </div>
           <div class='col-md-9 char-skills'>
+            {{#with char_skills as | c_skills |}}
             <h3>Skills</h3>
             <table>
               <tr>
                 <td>Superb (+5)</td>
-                {{> char-skill-row skills=skills lvl=5}}
+                {{> char-skill-row skills=../skills lvl=5 c_skills=c_skills.s5 }}
               </tr>
               <tr>
                 <td>Great (+4)</td>
-                {{> char-skill-row skills=skills lvl=4}}
+                {{> char-skill-row skills=../skills lvl=4 c_skills=c_skills.s4 }}
               </tr>
               <tr>
                 <td>Good (+3)</td>
-                {{> char-skill-row skills=skills lvl=3}}
+                {{> char-skill-row skills=../skills lvl=3 c_skills=c_skills.s3 }}
               </tr>
               <tr>
                 <td>Fair (+2)</td>
-                {{> char-skill-row skills=skills lvl=2}}
+                {{> char-skill-row skills=../skills lvl=2 c_skills=c_skills.s2 }}
               </tr>
               <tr>
                 <td>Average (+1)</td>
-                {{> char-skill-row skills=skills lvl=1}}
+                {{> char-skill-row skills=../skills lvl=1 c_skills=c_skills.s1 }}
               </tr>
             </table>
-            {{#each char.character_skills}}
-            <p>{{this.skill_name}}: {{this.level}}</p>
-            {{/each}}
+            {{/with}}
             <br />
           </div>
         </div>

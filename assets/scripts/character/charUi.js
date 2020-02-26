@@ -25,10 +25,21 @@ const onCharSelect = char => {
   // Has an optional char if selecting existing character, otherwise creates an
   // empty form
   let charSelectHtml
+  const charSkills = {
+    s5: [],
+    s4: [],
+    s3: [],
+    s2: [],
+    s1: []
+  }
   if (char) {
-    charSelectHtml = singleCharTemplate({ char: char, skills: store.skills })
+    char.character_skills.forEach(charSkill => {
+      const lvl = charSkill.level
+      charSkills[`s${lvl}`].push(charSkill)
+    })
+    charSelectHtml = singleCharTemplate({ char: char, char_skills: charSkills, skills: store.skills })
   } else {
-    charSelectHtml = singleCharTemplate({ char: {}, skills: store.skills })
+    charSelectHtml = singleCharTemplate({ char: {}, char_skills: charSkills, skills: store.skills })
   }
   $('.char-sheets', '.char-content-wrapper').html(charSelectHtml)
 }
@@ -76,6 +87,23 @@ const onDeleteCharPrompt = event => {
   deleteButton.attr('data-id', recipient)
 }
 
+const onSetCharSkill = event => {
+  const skillBtn = $(event.target)
+  const tableCell = skillBtn.parent().siblings('.skill-table-btn')
+  const dataSkillId = skillBtn.data('skillid')
+  const dataName = skillBtn.data('name')
+  if (dataSkillId) {
+    tableCell.html(dataName)
+    tableCell.attr({
+      'data-skillid': dataSkillId,
+      'data-name': dataName
+    })
+  } else {
+    tableCell.empty()
+    tableCell.removeAttr('data-skillid data-name')
+  }
+}
+
 module.exports = {
   onCharIndexSuccess,
   onCharIndexFailure,
@@ -86,5 +114,6 @@ module.exports = {
   onSaveCharFailure,
   onDeleteCharSuccess,
   onDeleteCharFailure,
-  onDeleteCharPrompt
+  onDeleteCharPrompt,
+  onSetCharSkill
 }

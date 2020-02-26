@@ -55,10 +55,47 @@ const charDelete = charId => {
   })
 }
 
+const charSkillCreate = charSkill => {
+  return $.ajax({
+    url: `${config.apiUrl}/character_skills`,
+    method: 'POST',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    },
+    data: charSkill
+  })
+}
+
+const charSkillUpdate = (charSkillData, charSkillId) => {
+  return $.ajax({
+    url: `${config.apiUrl}/character_skills/${charSkillId}`,
+    method: 'PATCH',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    },
+    data: {
+      character_skill: charSkillData
+    }
+  })
+}
+
+const charSkillDelete = charSkillId => {
+  return $.ajax({
+    url: `${config.apiUrl}/character_skills/${charSkillId}`,
+    method: 'DELETE',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    }
+  })
+}
+
 module.exports = {
   charIndex,
   charSelect,
   charCreate,
   charUpdate,
-  charDelete
+  charDelete,
+  charSkillCreate,
+  charSkillUpdate,
+  charSkillDelete
 }

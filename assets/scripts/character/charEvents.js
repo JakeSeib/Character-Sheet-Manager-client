@@ -33,11 +33,72 @@ const onCreateCharForm = event => {
   charUi.onCharSelect()
 }
 
+const formatCharSkill = (level, skillId, characterId, id) => {
+  // has optional id parameter if the character_skill already exists
+  const formattedCharSkill = {
+    character_skill: {
+      level: parseInt(level),
+      skill_id: parseInt(skillId),
+      character_id: parseInt(characterId)
+    }
+  }
+  if (id) {
+    formattedCharSkill['id'] = parseInt(id)
+  }
+  return formattedCharSkill
+}
+
+const checkSkillsTable = (charId) => {
+  const skillUpdates = {
+    create: [],
+    update: [],
+    delete: []
+  }
+  const skillBtns = $('.skill-table-btn', '.char-skills')
+  skillBtns.each((index, element) => {
+    const skillBtn = $(element)
+    const charSkillId = skillBtn.attr('data-charskillid')
+    const skillId = skillBtn.attr('data-skillid')
+    const charSkillLvl = skillBtn.data('lvl')
+    // see if skillBtn refers to a pre-existing character_skill
+    if (charSkillId) {
+      // see if it should be updated
+      if (skillId) {
+        skillUpdates['update'].push(formatCharSkill(charSkillLvl, skillId, charId, charSkillId))
+      // otherwise it should be deleted
+      } else {
+        skillUpdates['delete'].push(parseInt(charSkillId))
+      }
+    // if it has a skillId but isn't a pre-existing skill, it should be created
+    } else if (skillId) {
+      skillUpdates['create'].push(formatCharSkill(charSkillLvl, skillId, charId))
+    }
+  })
+  return skillUpdates
+}
+
+const onSaveSkills = charSkills => {
+  // charSkills should be an object with keys 'create', 'update', and 'delete',
+  // each with an array as a value with information needed to make their
+  // respective calls to the API to correctly update character_skills
+  charSkills['create'].forEach(charSkill => {
+    charApi.charSkillCreate(charSkill)
+  })
+  charSkills['update'].forEach(charSkill => {
+    charApi.charSkillUpdate(charSkill.character_skill, charSkill.id)
+  })
+  charSkills['delete'].forEach(charSkillId => {
+    charApi.charSkillDelete(charSkillId)
+  })
+}
+
 const onSaveChar = event => {
+  const charId = event.target.getAttribute('data-id')
   const charForm = $('.char-edit-form', '.char-sheet')[0]
   const charData = getFormFields(charForm)
-  const charId = event.target.getAttribute('data-id')
   if (charId) {
+    const charSkills = checkSkillsTable(charId)
+    onSaveSkills(charSkills)
     charApi.charUpdate(charData, charId)
       .then(charUi.onSaveCharSuccess)
       .catch(charUi.onSaveCharFailure)
@@ -58,15 +119,9 @@ const onDeleteChar = event => {
     .catch(charUi.onDeleteCharFailure)
 }
 
-const onSetCharSKill = event => {
-  const skillBtn = $(event.target)
-  const tableCell = skillBtn.parent().siblings('.skill-table-btn')
-  tableCell.html(skillBtn.data('name'))
-  tableCell.attr('data-skillid', skillBtn.data('skillid'))
+const onSelectCharSkill = event => {
+  charUi.onSetCharSkill(event)
 }
-
-// see: https://stackoverflow.com/questions/32059213/how-can-i-share-the-dropdown-menu-definition-accross-multiple-buttons
-// for info on how to attach the same dropdown to multiple buttons
 
 const addHandlers = () => {
   $('.main-content', 'body').on('click', '.char-index-btn', onGetChars)
@@ -76,7 +131,7 @@ const addHandlers = () => {
   $('.main-content', 'body').on('click', '.char-cancel-btn', onGetChars)
   $('.char-delete-modal', 'body').on('show.bs.modal', charUi.onDeleteCharPrompt)
   $('.char-delete-btn', '.char-delete-modal').on('click', onDeleteChar)
-  $('.main-content', 'body').on('click', '.dropdown-item', onSetCharSKill)
+  $('.main-content', 'body').on('click', '.dropdown-item', onSelectCharSkill)
 }
 
 module.exports = {
