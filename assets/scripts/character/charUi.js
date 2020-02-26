@@ -1,9 +1,9 @@
 'use strict'
 
+const store = require('../store')
 const allCharsTemplate = require('../templates/all-chars.handlebars')
 const singleCharTemplate = require('../templates/single-char.handlebars')
 const charSheetBtnsTemplate = require('../templates/buttons/edit-char-btns.handlebars')
-const store = require('../store')
 
 const onCharIndexSuccess = response => {
   if (Object.keys(response).length > 0) {
@@ -20,14 +20,26 @@ const onCharIndexFailure = () => {
   $('.char-message', '.char-content-wrapper').text(`Failed to get characters`)
 }
 
-const onCharSelect = id => {
+// use directly if selecting a single character from index
+const onCharSelect = char => {
+  // Has an optional char if selecting existing character, otherwise creates an
+  // empty form
   let charSelectHtml
-  if (id) {
-    charSelectHtml = singleCharTemplate({ char: store.user.characters[id] })
+  if (char) {
+    charSelectHtml = singleCharTemplate({ char: char, skills: store.skills })
   } else {
-    charSelectHtml = singleCharTemplate({ char: {} })
+    charSelectHtml = singleCharTemplate({ char: {}, skills: store.skills })
   }
   $('.char-sheets', '.char-content-wrapper').html(charSelectHtml)
+}
+
+// use as callback if selecting a single character via the API
+const onSelectCharSuccess = response => {
+  onCharSelect(response.character)
+}
+
+const onSelectCharFailure = response => {
+  $('.char-message', '.char-content-wrapper').text(`Failed to select character`)
 }
 
 const onSaveCharSuccess = response => {
@@ -68,6 +80,8 @@ module.exports = {
   onCharIndexSuccess,
   onCharIndexFailure,
   onCharSelect,
+  onSelectCharSuccess,
+  onSelectCharFailure,
   onSaveCharSuccess,
   onSaveCharFailure,
   onDeleteCharSuccess,

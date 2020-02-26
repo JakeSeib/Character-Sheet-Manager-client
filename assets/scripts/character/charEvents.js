@@ -14,6 +14,21 @@ const onGetChars = event => {
     .catch(charUi.onCharIndexFailure)
 }
 
+// use if selecting a single character via the API
+const onGetChar = event => {
+  const charId = event.target.getAttribute('data-id')
+  charApi.charSelect(charId)
+    .then(charUi.onSelectCharSuccess)
+    .catch(charUi.onSelectCharFailure)
+}
+
+// use if selecting a single character from store.user.characters
+// const onSelectChar = event => {
+//   const charId = event.target.getAttribute('data-id')
+//   const char = store.user.characters[charId]
+//   charUi.onCharSelect(char)
+// }
+
 const onCreateCharForm = event => {
   charUi.onCharSelect()
 }
@@ -43,19 +58,25 @@ const onDeleteChar = event => {
     .catch(charUi.onDeleteCharFailure)
 }
 
-const onSelectChar = event => {
-  const charId = event.target.getAttribute('data-id')
-  charUi.onCharSelect(charId)
+const onSetCharSKill = event => {
+  const skillBtn = $(event.target)
+  const tableCell = skillBtn.parent().siblings('.skill-table-btn')
+  tableCell.html(skillBtn.data('name'))
+  tableCell.attr('data-skillid', skillBtn.data('skillid'))
 }
+
+// see: https://stackoverflow.com/questions/32059213/how-can-i-share-the-dropdown-menu-definition-accross-multiple-buttons
+// for info on how to attach the same dropdown to multiple buttons
 
 const addHandlers = () => {
   $('.main-content', 'body').on('click', '.char-index-btn', onGetChars)
   $('.main-content', 'body').on('click', '.char-create-btn', onCreateCharForm)
   $('.main-content', 'body').on('click', '.char-save-btn', onSaveChar)
-  $('.main-content', 'body').on('click', '.char-select-btn', onSelectChar)
+  $('.main-content', 'body').on('click', '.char-select-btn', onGetChar)
   $('.main-content', 'body').on('click', '.char-cancel-btn', onGetChars)
   $('.char-delete-modal', 'body').on('show.bs.modal', charUi.onDeleteCharPrompt)
   $('.char-delete-btn', '.char-delete-modal').on('click', onDeleteChar)
+  $('.main-content', 'body').on('click', '.dropdown-item', onSetCharSKill)
 }
 
 module.exports = {

@@ -13,6 +13,16 @@ const charIndex = () => {
   })
 }
 
+const charSelect = charId => {
+  return $.ajax({
+    url: `${config.apiUrl}/characters/${charId}`,
+    method: 'GET',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    }
+  })
+}
+
 const charCreate = charData => {
   return $.ajax({
     url: `${config.apiUrl}/characters`,
@@ -47,6 +57,7 @@ const charDelete = charId => {
 
 module.exports = {
   charIndex,
+  charSelect,
   charCreate,
   charUpdate,
   charDelete

@@ -11,6 +11,10 @@ label {
   width: 80%;
 }
 
+td {
+  border: 1px $default-border-color solid;
+}
+
 .sign-in-wrapper,
 .change-pw-form {
   text-align: center;
