@@ -5,7 +5,8 @@
     <form class='char-edit-form'>
       <div class='container-fluid'>
         <div class='row'>
-          <div class='col-md-6 char-aspects'>
+          <div class='col-md-3 char-aspects'>
+            <h3>Aspects</h3>
             <fieldset>
               {{> aspect-display char=char display='Name' attr='name' }}
               {{> aspect-display char=char display='High Concept' attr='high_concept' }}
@@ -15,15 +16,34 @@
               {{> aspect-display char=char display='Aspect' attr='aspect_3' }}
             </fieldset>
           </div>
-          <div class='col-md-6 char-skills'>
+          <div class='col-md-9 char-skills'>
+            <h3>Skills</h3>
+            <table>
+              <tr>
+                <td>Superb (+5)</td>
+                {{> char-skill-row skills=skills}}
+              </tr>
+              <tr>
+                <td>Great (+4)</td>
+                {{> char-skill-row skills=skills}}
+              </tr>
+              <tr>
+                <td>Good (+3)</td>
+                {{> char-skill-row skills=skills}}
+              </tr>
+              <tr>
+                <td>Fair (+2)</td>
+                {{> char-skill-row skills=skills}}
+              </tr>
+              <tr>
+                <td>Average (+1)</td>
+                {{> char-skill-row skills=skills}}
+              </tr>
+            </table>
             {{#each char.character_skills}}
             <p>{{this.skill_name}}: {{this.level}}</p>
-            <br />
             {{/each}}
-            {{#each skills}}
-            <p>{{this.name}}</p>
             <br />
-            {{/each}}
           </div>
         </div>
       </div>

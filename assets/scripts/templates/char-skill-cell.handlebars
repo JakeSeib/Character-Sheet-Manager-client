@@ -1,0 +1,10 @@
+<td>
+  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  Dropdown button
+  </button>
+  <div class="dropdown-menu" id="skill-dropdown-menu">
+    {{#each skills}}
+    <a class="dropdown-item" href="#">{{this.display_name}}</a>
+    {{/each}}
+  </div>
+</td>
