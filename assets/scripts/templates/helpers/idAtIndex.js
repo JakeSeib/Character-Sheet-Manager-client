@@ -4,10 +4,10 @@
 
 'use strict'
 
-const skillIdAtIndex = (arr, index) => {
+const idAtIndex = (arr, index) => {
   if (arr[index]) {
-    return arr[index].skill_id
+    return arr[index].id
   }
 }
 
-module.exports = skillIdAtIndex
+module.exports = idAtIndex

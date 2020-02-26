@@ -25,23 +25,21 @@ const onCharSelect = char => {
   // Has an optional char if selecting existing character, otherwise creates an
   // empty form
   let charSelectHtml
+  const charSkills = {
+    s5: [],
+    s4: [],
+    s3: [],
+    s2: [],
+    s1: []
+  }
   if (char) {
-    const charSkills = {
-      s5: [],
-      s4: [],
-      s3: [],
-      s2: [],
-      s1: []
-    }
     char.character_skills.forEach(charSkill => {
       const lvl = charSkill.level
       charSkills[`s${lvl}`].push(charSkill)
     })
-    store.user.characters[char.id].skillHash = charSkills
-    console.log('current char', store.user.characters[char.id])
     charSelectHtml = singleCharTemplate({ char: char, char_skills: charSkills, skills: store.skills })
   } else {
-    charSelectHtml = singleCharTemplate({ char: {}, char_skills: {}, skills: store.skills })
+    charSelectHtml = singleCharTemplate({ char: {}, char_skills: charSkills, skills: store.skills })
   }
   $('.char-sheets', '.char-content-wrapper').html(charSelectHtml)
 }

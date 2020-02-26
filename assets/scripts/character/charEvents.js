@@ -33,11 +33,57 @@ const onCreateCharForm = event => {
   charUi.onCharSelect()
 }
 
+const formatCharSkill = (level, skillId, characterId, id) => {
+  // has optional id parameter if the character_skill already exists
+  const formattedCharSkill = {
+    character_skill: {
+      level: level,
+      skill_id: skillId,
+      character_id: parseInt(characterId)
+    }
+  }
+  if (id) {
+    formattedCharSkill['id'] = parseInt(id)
+  }
+  return formattedCharSkill
+}
+
+const checkSkillsTable = (charId) => {
+  const skillUpdates = {
+    create: [],
+    update: [],
+    delete: []
+  }
+  const skillBtns = $('.skill-table-btn', '.char-skills')
+  skillBtns.each((index, element) => {
+    const skillBtn = $(element)
+    const charSkillId = skillBtn.attr('data-skillid')
+    const skillId = skillBtn.data('skillid')
+    const charSkillLvl = skillBtn.data('lvl')
+    // see if skillBtn refers to a pre-existing character_skill
+    if (charSkillId) {
+      // see if it should be updated
+      if (skillId) {
+        skillUpdates['update'].push(formatCharSkill(charSkillLvl, skillId, charId, charSkillId))
+      // otherwise it should be deleted
+      } else {
+        skillUpdates['delete'].push(parseInt(charSkillId))
+      }
+    // if it has a skillId but isn't a pre-existing skill, it should be created
+    } else if (skillId) {
+      skillUpdates['create'].push(formatCharSkill(charSkillLvl, skillId, charId))
+    }
+  })
+  return skillUpdates
+}
+
 const onSaveChar = event => {
+  const charId = event.target.getAttribute('data-id')
   const charForm = $('.char-edit-form', '.char-sheet')[0]
   const charData = getFormFields(charForm)
-  const charId = event.target.getAttribute('data-id')
   if (charId) {
+    const charSkills = checkSkillsTable(charId)
+    // console.log('charSkills', charSkills)
     charApi.charUpdate(charData, charId)
       .then(charUi.onSaveCharSuccess)
       .catch(charUi.onSaveCharFailure)
