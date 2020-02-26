@@ -20,13 +20,12 @@ const onCharIndexFailure = () => {
   $('.char-message', '.char-content-wrapper').text(`Failed to get characters`)
 }
 
-// to be used if selecting a single character from index
+// use directly if selecting a single character from index
 const onCharSelect = char => {
   // Has an optional char if selecting existing character, otherwise creates an
   // empty form
   let charSelectHtml
   if (char) {
-    console.log('character', char)
     charSelectHtml = singleCharTemplate({ char: char, skills: store.skills })
   } else {
     charSelectHtml = singleCharTemplate({ char: {}, skills: store.skills })
@@ -34,7 +33,7 @@ const onCharSelect = char => {
   $('.char-sheets', '.char-content-wrapper').html(charSelectHtml)
 }
 
-// to be used if selecting a single character via the API
+// use as callback if selecting a single character via the API
 const onSelectCharSuccess = response => {
   onCharSelect(response.character)
 }
