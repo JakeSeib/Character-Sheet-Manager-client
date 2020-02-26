@@ -37,6 +37,8 @@ const onCharSelect = char => {
       const lvl = charSkill.level
       charSkills[`s${lvl}`].push(charSkill)
     })
+    store.user.characters[char.id].skillHash = charSkills
+    console.log('current char', store.user.characters[char.id])
     charSelectHtml = singleCharTemplate({ char: char, char_skills: charSkills, skills: store.skills })
   } else {
     charSelectHtml = singleCharTemplate({ char: {}, char_skills: {}, skills: store.skills })

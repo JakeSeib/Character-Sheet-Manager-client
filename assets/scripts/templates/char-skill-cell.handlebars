@@ -3,6 +3,7 @@
     {{skillAtIndex c_skills index}}
   </button>
   <div class="dropdown-menu" id="skill-dropdown-menu">
+    <a class="dropdown-item" data-lvl={{../lvl}} href="#">None</a>
     {{#each skills}}
     <a class="dropdown-item" data-skillid={{this.id}} data-name={{this.display_name}} data-lvl={{../lvl}} href="#">{{this.display_name}}</a>
     {{/each}}

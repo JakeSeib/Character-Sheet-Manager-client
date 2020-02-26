@@ -61,8 +61,14 @@ const onDeleteChar = event => {
 const onSetCharSKill = event => {
   const skillBtn = $(event.target)
   const tableCell = skillBtn.parent().siblings('.skill-table-btn')
-  tableCell.html(skillBtn.data('name'))
-  tableCell.attr('data-skillid', skillBtn.data('skillid'))
+  const dataName = skillBtn.data('name')
+  if (dataName) {
+    tableCell.html(skillBtn.data('name'))
+    tableCell.attr('data-skillid', skillBtn.data('skillid'))
+  } else {
+    tableCell.empty()
+    tableCell.removeAttr('data-skillid')
+  }
 }
 
 const addHandlers = () => {
