@@ -58,6 +58,12 @@ const onDeleteChar = event => {
     .catch(charUi.onDeleteCharFailure)
 }
 
+const onSetCharSKill = event => {
+  const skillBtn = $(event.target)
+  const tableCell = skillBtn.parent().siblings('.skill-table-btn')
+  tableCell.html(skillBtn.data('name'))
+}
+
 // see: https://stackoverflow.com/questions/32059213/how-can-i-share-the-dropdown-menu-definition-accross-multiple-buttons
 // for info on how to attach the same dropdown to multiple buttons
 
@@ -69,6 +75,7 @@ const addHandlers = () => {
   $('.main-content', 'body').on('click', '.char-cancel-btn', onGetChars)
   $('.char-delete-modal', 'body').on('show.bs.modal', charUi.onDeleteCharPrompt)
   $('.char-delete-btn', '.char-delete-modal').on('click', onDeleteChar)
+  $('.main-content', 'body').on('click', '.dropdown-item', onSetCharSKill)
 }
 
 module.exports = {
