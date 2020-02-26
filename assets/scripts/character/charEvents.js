@@ -78,13 +78,17 @@ const checkSkillsTable = (charId) => {
 }
 
 const onSaveSkills = charSkills => {
-  console.log('charSkills', charSkills)
   // charSkills should be an object with keys 'create', 'update', and 'delete',
   // each with an array as a value with information needed to make their
   // respective calls to the API to correctly update character_skills
   charSkills['create'].forEach(charSkill => {
-    console.log('create charSkill', charSkill)
     charApi.charSkillCreate(charSkill)
+  })
+  charSkills['update'].forEach(charSkill => {
+    charApi.charSkillUpdate(charSkill.character_skill, charSkill.id)
+  })
+  charSkills['delete'].forEach(charSkillId => {
+    charApi.charSkillDelete(charSkillId)
   })
 }
 
