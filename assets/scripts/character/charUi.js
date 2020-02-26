@@ -89,6 +89,23 @@ const onDeleteCharPrompt = event => {
   deleteButton.attr('data-id', recipient)
 }
 
+const onSetCharSkill = event => {
+  const skillBtn = $(event.target)
+  const tableCell = skillBtn.parent().siblings('.skill-table-btn')
+  const dataSkillId = skillBtn.data('skillid')
+  const dataName = skillBtn.data('name')
+  if (dataSkillId) {
+    tableCell.html(dataName)
+    tableCell.attr({
+      'data-skillid': dataSkillId,
+      'data-name': dataName
+    })
+  } else {
+    tableCell.empty()
+    tableCell.removeAttr('data-skillid data-name')
+  }
+}
+
 module.exports = {
   onCharIndexSuccess,
   onCharIndexFailure,
@@ -99,5 +116,6 @@ module.exports = {
   onSaveCharFailure,
   onDeleteCharSuccess,
   onDeleteCharFailure,
-  onDeleteCharPrompt
+  onDeleteCharPrompt,
+  onSetCharSkill
 }

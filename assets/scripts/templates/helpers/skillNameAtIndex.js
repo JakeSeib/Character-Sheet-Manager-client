@@ -4,10 +4,10 @@
 
 'use strict'
 
-const skillAtIndex = (arr, index) => {
+const skillNameAtIndex = (arr, index) => {
   if (arr[index]) {
     return arr[index].skill_name
   }
 }
 
-module.exports = skillAtIndex
+module.exports = skillNameAtIndex

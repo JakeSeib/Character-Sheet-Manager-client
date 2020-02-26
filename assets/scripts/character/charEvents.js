@@ -58,17 +58,8 @@ const onDeleteChar = event => {
     .catch(charUi.onDeleteCharFailure)
 }
 
-const onSetCharSKill = event => {
-  const skillBtn = $(event.target)
-  const tableCell = skillBtn.parent().siblings('.skill-table-btn')
-  const dataName = skillBtn.data('name')
-  if (dataName) {
-    tableCell.html(skillBtn.data('name'))
-    tableCell.attr('data-skillid', skillBtn.data('skillid'))
-  } else {
-    tableCell.empty()
-    tableCell.removeAttr('data-skillid')
-  }
+const onSelectCharSkill = event => {
+  charUi.onSetCharSkill(event)
 }
 
 const addHandlers = () => {
@@ -79,7 +70,7 @@ const addHandlers = () => {
   $('.main-content', 'body').on('click', '.char-cancel-btn', onGetChars)
   $('.char-delete-modal', 'body').on('show.bs.modal', charUi.onDeleteCharPrompt)
   $('.char-delete-btn', '.char-delete-modal').on('click', onDeleteChar)
-  $('.main-content', 'body').on('click', '.dropdown-item', onSetCharSKill)
+  $('.main-content', 'body').on('click', '.dropdown-item', onSelectCharSkill)
 }
 
 module.exports = {
