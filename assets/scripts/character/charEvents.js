@@ -65,9 +65,6 @@ const onSetCharSKill = event => {
   tableCell.attr('data-skillid', skillBtn.data('skillid'))
 }
 
-// see: https://stackoverflow.com/questions/32059213/how-can-i-share-the-dropdown-menu-definition-accross-multiple-buttons
-// for info on how to attach the same dropdown to multiple buttons
-
 const addHandlers = () => {
   $('.main-content', 'body').on('click', '.char-index-btn', onGetChars)
   $('.main-content', 'body').on('click', '.char-create-btn', onCreateCharForm)

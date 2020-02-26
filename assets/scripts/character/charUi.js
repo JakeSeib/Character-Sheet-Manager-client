@@ -26,9 +26,20 @@ const onCharSelect = char => {
   // empty form
   let charSelectHtml
   if (char) {
-    charSelectHtml = singleCharTemplate({ char: char, skills: store.skills })
+    const charSkills = {
+      s5: [],
+      s4: [],
+      s3: [],
+      s2: [],
+      s1: []
+    }
+    char.character_skills.forEach(charSkill => {
+      const lvl = charSkill.level
+      charSkills[`s${lvl}`].push(charSkill)
+    })
+    charSelectHtml = singleCharTemplate({ char: char, char_skills: charSkills, skills: store.skills })
   } else {
-    charSelectHtml = singleCharTemplate({ char: {}, skills: store.skills })
+    charSelectHtml = singleCharTemplate({ char: {}, char_skills: {}, skills: store.skills })
   }
   $('.char-sheets', '.char-content-wrapper').html(charSelectHtml)
 }
