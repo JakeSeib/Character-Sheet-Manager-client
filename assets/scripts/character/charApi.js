@@ -55,10 +55,22 @@ const charDelete = charId => {
   })
 }
 
+const charSkillCreate = charSkill => {
+  return $.ajax({
+    url: `${config.apiUrl}/character_skills`,
+    method: 'POST',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    },
+    data: charSkill
+  })
+}
+
 module.exports = {
   charIndex,
   charSelect,
   charCreate,
   charUpdate,
-  charDelete
+  charDelete,
+  charSkillCreate
 }
