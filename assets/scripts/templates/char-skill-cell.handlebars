@@ -1,5 +1,5 @@
 <td>
-  <button class="btn btn-secondary btn-sm dropdown-toggle skill-table-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+  <button class="btn btn-secondary btn-sm dropdown-toggle skill-table-btn" type="button" data-lvl={{lvl}} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
   <div class="dropdown-menu" id="skill-dropdown-menu">
     {{#each skills}}
     <a class="dropdown-item" data-skillid={{this.id}} data-name={{this.display_name}} data-lvl={{../lvl}} href="#">{{this.display_name}}</a>

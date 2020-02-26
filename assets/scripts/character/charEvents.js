@@ -62,6 +62,7 @@ const onSetCharSKill = event => {
   const skillBtn = $(event.target)
   const tableCell = skillBtn.parent().siblings('.skill-table-btn')
   tableCell.html(skillBtn.data('name'))
+  tableCell.attr('data-skillid', skillBtn.data('skillid'))
 }
 
 // see: https://stackoverflow.com/questions/32059213/how-can-i-share-the-dropdown-menu-definition-accross-multiple-buttons
