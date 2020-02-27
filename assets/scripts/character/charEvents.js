@@ -104,7 +104,11 @@ const onSaveChar = event => {
       .catch(charUi.onSaveCharFailure)
   } else {
     charApi.charCreate(charData)
-      .then(charUi.onSaveCharSuccess)
+      .then(response => {
+        const charSkills = checkSkillsTable(response.character.id)
+        onSaveSkills(charSkills)
+        charUi.onSaveCharSuccess(response)
+      })
       .catch(charUi.onSaveCharFailure)
   }
 }
