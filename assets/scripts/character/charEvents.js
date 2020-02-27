@@ -14,12 +14,16 @@ const onGetChars = event => {
     .catch(charUi.onCharIndexFailure)
 }
 
-// use if selecting a single character via the API
-const onGetChar = event => {
-  const charId = event.target.getAttribute('data-id')
+const onLoadChar = charId => {
   charApi.charSelect(charId)
     .then(charUi.onSelectCharSuccess)
     .catch(charUi.onSelectCharFailure)
+}
+
+// use if selecting a single character via the API
+const onGetChar = event => {
+  const charId = event.target.getAttribute('data-id')
+  onLoadChar(charId)
 }
 
 // use if selecting a single character from store.user.characters
@@ -81,15 +85,17 @@ const onSaveSkills = charSkills => {
   // charSkills should be an object with keys 'create', 'update', and 'delete',
   // each with an array as a value with information needed to make their
   // respective calls to the API to correctly update character_skills
+  const promises = []
   charSkills['create'].forEach(charSkill => {
-    charApi.charSkillCreate(charSkill)
+    promises.push(charApi.charSkillCreate(charSkill))
   })
   charSkills['update'].forEach(charSkill => {
-    charApi.charSkillUpdate(charSkill.character_skill, charSkill.id)
+    promises.push(charApi.charSkillUpdate(charSkill.character_skill, charSkill.id))
   })
   charSkills['delete'].forEach(charSkillId => {
-    charApi.charSkillDelete(charSkillId)
+    promises.push(charApi.charSkillDelete(charSkillId))
   })
+  return promises
 }
 
 const onSaveChar = event => {
@@ -97,17 +103,23 @@ const onSaveChar = event => {
   const charForm = $('.char-edit-form', '.char-sheet')[0]
   const charData = getFormFields(charForm)
   if (charId) {
-    const charSkills = checkSkillsTable(charId)
-    onSaveSkills(charSkills)
     charApi.charUpdate(charData, charId)
-      .then(charUi.onSaveCharSuccess)
+      .then(response => {
+        Promise.all(onSaveSkills(checkSkillsTable(charId)))
+          .then(response => {
+            onLoadChar(charId)
+            charUi.onSaveCharSuccess()
+          })
+      })
       .catch(charUi.onSaveCharFailure)
   } else {
     charApi.charCreate(charData)
       .then(response => {
-        const charSkills = checkSkillsTable(response.character.id)
-        onSaveSkills(charSkills)
-        charUi.onSaveCharSuccess(response)
+        Promise.all(onSaveSkills(checkSkillsTable(response.character.id)))
+          .then(response => {
+            onLoadChar(charId)
+            charUi.onSaveCharSuccess()
+          })
       })
       .catch(charUi.onSaveCharFailure)
   }
