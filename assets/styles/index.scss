@@ -60,10 +60,13 @@ td {
 
 // .char-card {}
 
-// bootstrap breakpoint styling: sm-md
-// @media screen and (min-width: 768px) {
-// }
+// bootstrap breakpoint styling: <sm
+@media screen and (max-width: 768px) {
+  .skill-table-btn {
+    font-size: .7rem;
+  }
+}
 
-// bootstrap breakpoint styling: md-lg
+// bootstrap breakpoint styling: sm-md
 // @media screen and (min-width: 768px) and (max-width: 1000px) {
 // }

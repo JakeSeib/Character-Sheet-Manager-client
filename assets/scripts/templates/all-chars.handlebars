@@ -4,12 +4,12 @@
     <section class = "char-card col-md-4 border border-dark rounded bg-white" data-id="{{char.id}}">
       <h6>Name:</h6>
       <h3>
-        {{limit char.name 15}}
+        {{limit char.name 20}}
       </h3>
       <h6>High Concept:</h6>
       <p>
         {{#if char.high_concept}}
-          {{char.high_concept}}
+          {{limit char.high_concept 40}}
         {{/if}}
       </p>
       <div class="btn-container">
