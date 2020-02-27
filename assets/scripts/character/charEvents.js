@@ -99,7 +99,7 @@ const onSaveSkills = charSkills => {
 }
 
 const onSaveChar = event => {
-  const charId = event.target.getAttribute('data-id')
+  let charId = event.target.getAttribute('data-id')
   const charForm = $('.char-edit-form', '.char-sheet')[0]
   const charData = getFormFields(charForm)
   if (charId) {
@@ -115,7 +115,8 @@ const onSaveChar = event => {
   } else {
     charApi.charCreate(charData)
       .then(response => {
-        Promise.all(onSaveSkills(checkSkillsTable(response.character.id)))
+        charId = response.character.id
+        Promise.all(onSaveSkills(checkSkillsTable(charId)))
           .then(response => {
             onLoadChar(charId)
             charUi.onSaveCharSuccess()
