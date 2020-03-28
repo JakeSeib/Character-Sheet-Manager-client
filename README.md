@@ -26,9 +26,11 @@ For more details on the app, as well as documentation on planning, see also the 
 
 ### Development Process
 
-Work on the app took place over the course of 4 days. The MVP for the app involved a very simple version of characters (only name and aspects, all strings) and was achieved in approximately 2 days. The latter 2 days were primarily spent on skills and character_skills, as well as UX improvements, such as asking for confirmation to delete a character. Basic templates for both the client and rails API were provided by General Assembly.
+Work on the app took place over the course of 4 days. The MVP for the app involved a very simple version of characters (only name and aspects, all strings) and was achieved in approximately 2 days. The latter 2 days were primarily spent on skills and character_skills, as well as UX improvements, such as asking for confirmation to delete a character.
 
 Most notably, the rails API template provided pre-constructed routes for user authentication and pre-constructed controller classes to prevent user actions on resources not belonging to them. While read access to resources not belonging to a user was permitted within the project's requirements, the only resource this app allows users to view that they do not own are skills (which cannot be owned by users).
+
+Basic templates for both the client and express API were provided by General Assembly. See LICENSE for legal information on use of this template.
 
 ### How could this be improved?
 
