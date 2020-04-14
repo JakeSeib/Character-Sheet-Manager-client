@@ -20,6 +20,18 @@ Currently, only aspects and skills for characters are implemented, and character
 - **Grunt**: Frontend deployment to Github pages
 - **GitHub**: Version control
 
+## Set Up
+### Dependencies
+-   [browser-template](https://git.generalassemb.ly/ga-wdi-boston/browser-template)
+
+### Run development server
+```
+// install dependencies
+npm install
+// launch development server
+grunt serve
+```
+
 ### Further documentation
 
 For more details on the app, as well as documentation on planning, see also the [backend repository](https://github.com/JakeSeib/Character-Sheet-Manager-backend), the [planning directory](https://github.com/JakeSeib/Character-Sheet-Manager-backend/tree/master/planning), which includes wireframes, an ERD, and user stories used in planning, and the [deployed backend](https://floating-gorge-61213.herokuapp.com/) (not very interesting to view in the browser; see the backend repository for information on API end points).
