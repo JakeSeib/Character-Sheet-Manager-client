@@ -153,6 +153,7 @@ const addHandlers = () => {
   $('.char-delete-modal', 'body').on('show.bs.modal', charUi.onDeleteCharPrompt)
   $('.char-delete-btn', '.char-delete-modal').on('click', onDeleteChar)
   $('.main-content', 'body').on('click', '.dropdown-item', onSelectCharSkill)
+  $('.main-content', 'body').on('click', '.app-title', onLoadSplash)
 }
 
 module.exports = {

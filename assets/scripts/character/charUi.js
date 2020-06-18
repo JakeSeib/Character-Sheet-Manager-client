@@ -108,7 +108,7 @@ const onSetCharSkill = event => {
 }
 
 const onSetSplash = event => {
-  // const splashHtml =
+  $('.message').empty()
   $('.char-sheets').html(splashTemplate)
 }
 
