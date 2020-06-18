@@ -15,6 +15,11 @@ td {
   border: 1px $default-border-color solid;
 }
 
+h4 {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
 .sign-in-wrapper,
 .change-pw-form {
   text-align: center;
@@ -56,6 +61,10 @@ td {
 
 .message {
   text-align: center;
+}
+
+.splash {
+  margin-bottom: 1rem;
 }
 
 // .char-card {}

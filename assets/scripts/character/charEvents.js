@@ -140,6 +140,10 @@ const onSelectCharSkill = event => {
   charUi.onSetCharSkill(event)
 }
 
+const onLoadSplash = event => {
+  charUi.onSetSplash(event)
+}
+
 const addHandlers = () => {
   $('.main-content', 'body').on('click', '.char-index-btn', onGetChars)
   $('.main-content', 'body').on('click', '.char-create-btn', onCreateCharForm)
@@ -149,8 +153,10 @@ const addHandlers = () => {
   $('.char-delete-modal', 'body').on('show.bs.modal', charUi.onDeleteCharPrompt)
   $('.char-delete-btn', '.char-delete-modal').on('click', onDeleteChar)
   $('.main-content', 'body').on('click', '.dropdown-item', onSelectCharSkill)
+  $('.main-content', 'body').on('click', '.app-title', onLoadSplash)
 }
 
 module.exports = {
-  addHandlers
+  addHandlers,
+  onLoadSplash
 }
