@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Character Sheet Manager</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body class='bg-light'>
+
+      <div class='sign-in-wrapper container'>
+        <h2>Character Sheet Manager</h2>
+        <div class='row justify-content-center'>
+          <div class='col col-lg-6 border border-dark rounded bg-white'>
+            <p class='message sign-up-message'></p>
+            <form class='sign-up-form'>
+              <fieldset>
+                <legend>Sign Up</legend>
+                <p>* required field</p>
+                <label>Email*
+                  <br />
+                  <input class='signup email-input' name='credentials[email]' type='email' placeholder='example@example.com'>
+                </label>
+                <br />
+                <label>Name
+                  <br />
+                  <input class='signup name-input' name='credentials[name]' type='text' placeholder='Your Name Here'>
+                </label>
+                <br />
+                <label>Password*
+                  <br />
+                  <input class='signup pw-input' name='credentials[password]' type='password' placeholder='Password'>
+                </label>
+                <br />
+                <label>Confirm Password*
+                  <br />
+                  <input class='signup pw-input' name='credentials[password_confirmation]' type='password' placeholder='Confirm Password'>
+                </label>
+                <br />
+                <input class='btn-secondary' type='submit' value='Sign Up'>
+              </fieldset>
+            </form>
+
+            <p class='message sign-in-message'></p>
+            <form class='sign-in-form'>
+              <fieldset>
+                <legend>Log In</legend>
+                <label>Email
+                  <br />
+                  <input class='signin email-input' name='credentials[email]' type='email' placeholder='example@example.com'>
+                </label>
+                <br />
+                <label>Password
+                  <br />
+                  <input class='signin pw-input' name='credentials[password]' type='password' placeholder='Password'>
+                </label>
+                <br />
+                <input class='btn-secondary' type='submit' value='Log In'>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <main class='main-content'></main>
+
+      <!-- Delete Character Modal -->
+      <div class="modal fade char-delete-modal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Delete Character</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <p class='message char-delete-conf-message'>
+              Are you sure you want to delete this character?
+            </p>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-danger char-delete-btn" data-dismiss="modal">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </body>
+</html>
