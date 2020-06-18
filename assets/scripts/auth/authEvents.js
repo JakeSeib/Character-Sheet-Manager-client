@@ -5,13 +5,14 @@ const authApi = require('./authApi')
 const authUi = require('./authUi')
 const charEvents = require('../character/charEvents')
 
-const signInWithData = userData => (
+const signInWithData = userData => {
   // userData has the format that getFormFields outputs from a form with email
   // and password
   authApi.signIn(userData)
     .then(authUi.onSignInSuccess)
+    .then(charEvents.onLoadSplash)
     .catch(authUi.onSignInFailure)
-)
+}
 
 const onSignUp = event => {
   event.preventDefault()
@@ -38,7 +39,6 @@ const onSignIn = event => {
   event.preventDefault()
   const userData = getFormFields(event.target)
   signInWithData(userData)
-    .then(charEvents.onLoadSplash)
 }
 
 const onChangePw = event => {
