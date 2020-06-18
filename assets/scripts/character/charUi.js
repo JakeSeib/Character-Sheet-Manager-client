@@ -106,6 +106,11 @@ const onSetCharSkill = event => {
   }
 }
 
+const onSetSplash = event => {
+  // const splashHtml =
+  $('.char-sheets').text('Set text')
+}
+
 module.exports = {
   onCharIndexSuccess,
   onCharIndexFailure,
@@ -117,5 +122,6 @@ module.exports = {
   onDeleteCharSuccess,
   onDeleteCharFailure,
   onDeleteCharPrompt,
-  onSetCharSkill
+  onSetCharSkill,
+  onSetSplash
 }

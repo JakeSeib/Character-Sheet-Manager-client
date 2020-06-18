@@ -140,6 +140,10 @@ const onSelectCharSkill = event => {
   charUi.onSetCharSkill(event)
 }
 
+const onLoadSplash = event => {
+  charUi.onSetSplash(event)
+}
+
 const addHandlers = () => {
   $('.main-content', 'body').on('click', '.char-index-btn', onGetChars)
   $('.main-content', 'body').on('click', '.char-create-btn', onCreateCharForm)
@@ -152,5 +156,6 @@ const addHandlers = () => {
 }
 
 module.exports = {
-  addHandlers
+  addHandlers,
+  onLoadSplash
 }
