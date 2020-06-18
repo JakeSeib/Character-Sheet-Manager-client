@@ -3,6 +3,7 @@
 const store = require('../store')
 const allCharsTemplate = require('../templates/all-chars.handlebars')
 const singleCharTemplate = require('../templates/single-char.handlebars')
+const splashTemplate = require('../templates/splash-page.handlebars')
 // const charSheetBtnsTemplate = require('../templates/buttons/edit-char-btns.handlebars')
 
 const onCharIndexSuccess = response => {
@@ -108,7 +109,7 @@ const onSetCharSkill = event => {
 
 const onSetSplash = event => {
   // const splashHtml =
-  $('.char-sheets').text('Set text')
+  $('.char-sheets').html(splashTemplate)
 }
 
 module.exports = {
